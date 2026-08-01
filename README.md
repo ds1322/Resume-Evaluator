@@ -9,3 +9,6 @@ AI Resume Parser & Evaluator | Python, Streamlit, LLM (Groq API), Pydantic
 
 •	Added robust error handling for malformed AI responses and unreadable files, with per-file isolation so one failuredoesn't stop batch processing.
 •	Deployed a live, public Streamlit web app with drag-and-drop multi-resume upload and downloadable results.
+
+
+App Link :- https://resume-evaluator-syqne5rocxthgpp8zgy6bi.streamlit.app/
