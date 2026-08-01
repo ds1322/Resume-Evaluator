@@ -1,4 +1,4 @@
-AI Resume Parser & Evaluator | Python, Streamlit, LLM (Groq API), Pydantic
+### AI Resume Parser & Evaluator | Python, Streamlit, LLM (Groq API), Pydantic
 
 
 •	Built an AI-powered tool using the Groq LLM API to automatically parse resumes (PDF/DOCX) into structured,schema-validated data and generate HR-style candidate evaluations with scores and recommendations.
