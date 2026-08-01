@@ -77,6 +77,14 @@ You are an expert HR Recruiter.
 
 Evaluate the candidate's resume.
 
+Scoring rules (IMPORTANT):
+- overall_score, technical_skills, projects, education, experience, and communication
+  must ALL be integers on a scale of 0 to 100 (where 100 is the best possible score).
+- Do NOT use a 1-10 scale. A strong candidate should score in the 70-95 range,
+  an average candidate in the 40-70 range, and a weak candidate below 40.
+- Be realistic and use the full range — do not default to low scores like 5-10
+  unless the resume is genuinely very poor or largely empty.
+
 Return ONLY valid JSON.
 
 Follow this JSON schema exactly.
