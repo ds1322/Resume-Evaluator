@@ -10,12 +10,23 @@ from pypdf import PdfReader
 # ----------------------------
 # Load Environment Variables
 # ----------------------------
+# Works locally (.env file) AND on Streamlit Community Cloud (st.secrets)
 load_dotenv()
 
 my_api_key = os.getenv("GROQ_API_KEY")
 
 if not my_api_key:
-    st.error("GROQ_API_KEY not found. Please set it in your .env file.")
+    try:
+        my_api_key = st.secrets["GROQ_API_KEY"]
+    except (KeyError, FileNotFoundError):
+        my_api_key = None
+
+if not my_api_key:
+    st.error(
+        "GROQ_API_KEY not found. "
+        "Locally: add it to a .env file. "
+        "On Streamlit Cloud: add it under App settings → Secrets."
+    )
     st.stop()
 
 client = Groq(api_key=my_api_key)
@@ -206,6 +217,24 @@ if uploaded_files:
                     st.write(f"**Recommendation:** {evaluation.recommendation}")
 
                 st.success(f"Saved to {parsed_path} and {eval_path}")
+
+                dcol1, dcol2 = st.columns(2)
+                with dcol1:
+                    st.download_button(
+                        "⬇️ Download parsed JSON",
+                        data=json.dumps(data, indent=4),
+                        file_name=f"{base_name}_parsed.json",
+                        mime="application/json",
+                        key=f"parsed_{uploaded_file.name}"
+                    )
+                with dcol2:
+                    st.download_button(
+                        "⬇️ Download evaluation JSON",
+                        data=json.dumps(eval_data, indent=4),
+                        file_name=f"{base_name}_evaluation.json",
+                        mime="application/json",
+                        key=f"eval_{uploaded_file.name}"
+                    )
 
             except json.JSONDecodeError as e:
                 st.error(f"Failed to parse JSON from model response: {e}")
